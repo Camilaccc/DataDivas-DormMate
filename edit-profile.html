@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dormmate Finder - Ocean Bay University</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Form container styling to keep everything clean and centered on the screen */
+        .form-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-family: Arial, sans-serif;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="number"],
+        .form-group input[type="date"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .checkbox-group {
+            margin-bottom: 15px;
+        }
+        .checkbox-group label {
+            font-weight: normal;
+            display: inline;
+            margin-left: 8px;
+        }
+        .submit-btn {
+            background-color: #0056b3;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+        }
+        .submit-btn:hover {
+            background-color: #004085;
+        }
+    </style>
+</head>
+<body>
+
+     <header>
+        <div class="logo-container">
+            <div class="logo-box">OBU</div>
+            <div class="logo">Ocean Bay University</div>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#">About</a>
+            <a href="#">Admissions</a>
+            <a href="#">Academics</a>
+            <a href="#">Students</a>
+            <a href="#">Housing</a>
+            <a href="edit-profile.html">Dormmate</a>
+        </nav>
+     </header>
+
+     <main>
+         <!-- Centered main title -->
+         <h1 style="text-align: center; margin-top: 30px;">Find Your Dormmate</h1>
+
+         <!-- Main Form Wrapper containing all Spreadsheet Fields -->
+         <div class="form-container">
+             <form action="#" method="POST">
+
+                 <!-- 1. Student ID -->
+                 <div class="form-group">
+                     <label for="student_id">Student ID</label>
+                     <input type="text" id="student_id" name="student_id" required placeholder="e.g. 123456">
+                 </div>
+
+                 <!-- 2. Name -->
+                 <div class="form-group">
+                     <label for="name">Full Name</label>
+                     <input type="text" id="name" name="name" required placeholder="John Doe">
+                 </div>
+
+                 <!-- 3. Email -->
+                 <div class="form-group">
+                     <label for="email">OBU Email Address</label>
+                     <input type="email" id="email" name="email" required placeholder="jdoe@oceanbay.edu">
+                 </div>
+
+                 <!-- 4. Age -->
+                 <div class="form-group">
+                     <label for="age">Age</label>
+                     <input type="number" id="age" name="age" min="17" max="99" required>
+                 </div>
+
+                 <!-- 5. Gender -->
+                 <div class="form-group">
+                     <label for="gender">Gender</label>
+                     <select id="gender" name="gender" required>
+                         <option value="">Select Gender</option>
+                         <option value="Male">Male</option>
+                         <option value="Female">Female</option>
+                         <option value="Non-Binary">Non-Binary</option>
+                         <option value="Other">Prefer not to say</option>
+                     </select>
+                 </div>
+
+                 <!-- 6. Major -->
+                 <div class="form-group">
+                     <label for="major">Major / Field of Study</label>
+                     <input type="text" id="major" name="major" required placeholder="Computer Science">
+                 </div>
+
+                 <!-- 7. Preferred Room Type -->
+                 <div class="form-group">
+                     <label for="room_type">Preferred Room Type</label>
+                     <select id="room_type" name="room_type" required>
+                         <option value="">Select Room Type</option>
+                         <option value="Single">Single Room</option>
+                         <option value="Double">Double (Shared)</option>
+                         <option value="Triple">Triple (Shared)</option>
+                         <option value="Suite">Suite Style</option>
+                     </select>
+                 </div>
+
+                 <!-- 8. Budget -->
+                 <div class="form-group">
+                     <label for="budget">Budget ($ / month limit)</label>
+                     <input type="number" id="budget" name="budget" min="0" step="50" required placeholder="e.g. 800">
+                 </div>
+
+                 <!-- 9. Move In Date -->
+                 <div class="form-group">
+                     <label for="move_in">Expected Move-In Date</label>
+                     <input type="date" id="move_in" name="move_in" required>
+                 </div>
+
+                 <!-- 12. Cleanliness (1-5 slider) -->
+                 <div class="form-group">
+                     <label for="cleanliness">Cleanliness Rating (1 = Laid back, 5 = Very Clean)</label>
+                     <select id="cleanliness" name="cleanliness" required>
+                         <option value="1">1 - Very Messy / Laid Back</option>
+                         <option value="2">2 - Mostly Casual</option>
+                         <option value="3">3 - Average Cleanliness</option>
+                         <option value="4">4 - Neat and Tidy</option>
+                         <option value="5">5 - Spotless / Neat Freak</option>
+                     </select>
+                 </div>
+
+                 <!-- 14. Schedule Selection -->
+                 <div class="form-group">
+                     <label for="schedule">Daily Lifestyle Schedule</label>
+                     <select id="schedule" name="schedule" required>
+                         <option value="">Select your schedule</option>
+                         <option value="Early Bird">Early Bird (Morning Person)</option>
+                         <option value="Night Owl">Night Owl (Up Late)</option>
+                         <option value="Flexible">Flexible / Mixed Schedule</option>
+                     </select>
+                 </div>
+
+                 <!-- Lifestyle Toggle Options (10. Smoker, 11. Pets, 15. Car) -->
+                 <div class="form-group">
+                     <label>Lifestyle Factors</label>
+
+                     <div class="checkbox-group">
+                         <input type="checkbox" id="smoker" name="smoker" value="Yes">
+                         <label for="smoker">10. Smoker (Check if yes)</label>
+                     </div>
+
+                     <div class="checkbox-group">
+                         <input type="checkbox" id="pets" name="pets" value="Yes">
+                         <label for="pets">11. Pets (Check if bringing a pet)</label>
+                     </div>
+
+                     <div class="checkbox-group">
+                         <input type="checkbox" id="car" name="car" value="Yes">
+                         <label for="car">15. Car (Check if you need campus parking)</label>
+                     </div>
+                 </div>
+
+                 <!-- 13. Interests Paragraph Area -->
+                 <div class="form-group">
+                     <label for="interests">Interests & Hobbies</label>
+                     <textarea id="interests" name="interests" rows="3" placeholder="e.g. Video games, basketball, reading, hiking..."></textarea>
+                 </div>
+
+                 <!-- Submission Action -->
+                 <button type="submit" class="submit-btn">Save Dormmate Profile</button>
+             </form>
+         </div>
+     </main>
+
+</body>
+</html>
