@@ -40,6 +40,8 @@
         }
         .checkbox-group {
             margin-bottom: 15px;
+            display: flex;
+            align-items: center;
         }
         .checkbox-group label {
             font-weight: normal;
@@ -60,9 +62,69 @@
         .submit-btn:hover {
             background-color: #004085;
         }
+
+        /* --- Wizard Specific Styles --- */
+        .wizard-step {
+            display: none;
+        }
+        .wizard-step.active {
+            display: block;
+        }
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            height: 8px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #0056b3;
+            transition: width 0.3s ease;
+        }
+        .step-indicator {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 25px;
+            text-align: right;
+            font-weight: bold;
+        }
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .nav-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .prev-btn {
+            background-color: #6c757d;
+            color: white;
+        }
+        .prev-btn:hover {
+            background-color: #5a6268;
+        }
+        .next-btn {
+            background-color: #0056b3;
+            color: white;
+        }
+        .next-btn:hover {
+            background-color: #004085;
+        }
+
+
     </style>
 </head>
-<body>
+<body style="background: linear-gradient(135deg, #c2b299 0%, #ded2be 50%, #a89981 100%) !important; background-attachment: fixed !important; min-height: 100vh; margin: 0; padding: 0;">
+
 
      <header>
         <div class="logo-container">
@@ -82,133 +144,303 @@
      </header>
 
      <main>
-         <!-- Centered main title -->
-         <h1 style="text-align: center; margin-top: 30px;">Find Your Dormmate</h1>
+         <h1 style="text-align: center; margin-top: 30px;">Welcome to Find Your DormMate!</h1>
 
-         <!-- Main Form Wrapper containing all Spreadsheet Fields -->
          <div class="form-container">
-             <form action="#" method="POST">
 
-                 <!-- 1. Student ID -->
-                 <div class="form-group">
-                     <label for="student_id">Student ID</label>
-                     <input type="text" id="student_id" name="student_id" required placeholder="e.g. 123456">
-                 </div>
+             <!-- Dynamic Progress Tracker -->
+             <div class="progress-container">
+                 <div class="progress-bar" id="progressBar"></div>
+             </div>
+             <div class="step-indicator" id="stepIndicator">Step 1 of 13</div>
 
-                 <!-- 2. Name -->
-                 <div class="form-group">
-                     <label for="name">Full Name</label>
-                     <input type="text" id="name" name="name" required placeholder="John Doe">
-                 </div>
+             <form id="wizardForm" action="#" method="POST">
 
-                 <!-- 3. Email -->
-                 <div class="form-group">
-                     <label for="email">OBU Email Address</label>
-                     <input type="email" id="email" name="email" required placeholder="jdoe@oceanbay.edu">
-                 </div>
-
-                 <!-- 4. Age -->
-                 <div class="form-group">
-                     <label for="age">Age</label>
-                     <input type="number" id="age" name="age" min="17" max="99" required>
-                 </div>
-
-                 <!-- 5. Gender -->
-                 <div class="form-group">
-                     <label for="gender">Gender</label>
-                     <select id="gender" name="gender" required>
-                         <option value="">Select Gender</option>
-                         <option value="Male">Male</option>
-                         <option value="Female">Female</option>
-                         <option value="Non-Binary">Non-Binary</option>
-                         <option value="Other">Prefer not to say</option>
-                     </select>
-                 </div>
-
-                 <!-- 6. Major -->
-                 <div class="form-group">
-                     <label for="major">Major / Field of Study</label>
-                     <input type="text" id="major" name="major" required placeholder="Computer Science">
-                 </div>
-
-                 <!-- 7. Preferred Room Type -->
-                 <div class="form-group">
-                     <label for="room_type">Preferred Room Type</label>
-                     <select id="room_type" name="room_type" required>
-                         <option value="">Select Room Type</option>
-                         <option value="Single">Single Room</option>
-                         <option value="Double">Double (Shared)</option>
-                         <option value="Triple">Triple (Shared)</option>
-                         <option value="Suite">Suite Style</option>
-                     </select>
-                 </div>
-
-                 <!-- 8. Budget -->
-                 <div class="form-group">
-                     <label for="budget">Budget ($ / month limit)</label>
-                     <input type="number" id="budget" name="budget" min="0" step="50" required placeholder="e.g. 800">
-                 </div>
-
-                 <!-- 9. Move In Date -->
-                 <div class="form-group">
-                     <label for="move_in">Expected Move-In Date</label>
-                     <input type="date" id="move_in" name="move_in" required>
-                 </div>
-
-                 <!-- 12. Cleanliness (1-5 slider) -->
-                 <div class="form-group">
-                     <label for="cleanliness">Cleanliness Rating (1 = Laid back, 5 = Very Clean)</label>
-                     <select id="cleanliness" name="cleanliness" required>
-                         <option value="1">1 - Very Messy / Laid Back</option>
-                         <option value="2">2 - Mostly Casual</option>
-                         <option value="3">3 - Average Cleanliness</option>
-                         <option value="4">4 - Neat and Tidy</option>
-                         <option value="5">5 - Spotless / Neat Freak</option>
-                     </select>
-                 </div>
-
-                 <!-- 14. Schedule Selection -->
-                 <div class="form-group">
-                     <label for="schedule">Daily Lifestyle Schedule</label>
-                     <select id="schedule" name="schedule" required>
-                         <option value="">Select your schedule</option>
-                         <option value="Early Bird">Early Bird (Morning Person)</option>
-                         <option value="Night Owl">Night Owl (Up Late)</option>
-                         <option value="Flexible">Flexible / Mixed Schedule</option>
-                     </select>
-                 </div>
-
-                 <!-- Lifestyle Toggle Options (10. Smoker, 11. Pets, 15. Car) -->
-                 <div class="form-group">
-                     <label>Lifestyle Factors</label>
-
-                     <div class="checkbox-group">
-                         <input type="checkbox" id="smoker" name="smoker" value="Yes">
-                         <label for="smoker">10. Smoker (Check if yes)</label>
-                     </div>
-
-                     <div class="checkbox-group">
-                         <input type="checkbox" id="pets" name="pets" value="Yes">
-                         <label for="pets">11. Pets (Check if bringing a pet)</label>
-                     </div>
-
-                     <div class="checkbox-group">
-                         <input type="checkbox" id="car" name="car" value="Yes">
-                         <label for="car">15. Car (Check if you need campus parking)</label>
+                 <!-- Step 1: Student ID -->
+                 <div class="wizard-step active">
+                     <div class="form-group">
+                         <label for="student_id">Student ID</label>
+                         <input type="text" id="student_id" name="student_id" required placeholder="e.g. 123456">
                      </div>
                  </div>
 
-                 <!-- 13. Interests Paragraph Area -->
-                 <div class="form-group">
-                     <label for="interests">Interests & Hobbies</label>
-                     <textarea id="interests" name="interests" rows="3" placeholder="e.g. Video games, basketball, reading, hiking..."></textarea>
+                 <!-- Step 2: Name -->
+                 <div class="wizard-step">
+                     <div class="form-group">
+                         <label for="name">Full Name</label>
+                         <input type="text" id="name" name="name" required placeholder="John Doe">
+                     </div>
                  </div>
 
-                 <!-- Submission Action -->
-                 <button type="submit" class="submit-btn">Save Dormmate Profile</button>
+                 <!-- Step 3: Email -->
+                 <div class="wizard-step">
+                     <div class="form-group">
+                         <label for="email">OBU Email Address</label>
+                         <input type="email" id="email" name="email" required placeholder="jdoe@oceanbay.edu">
+                     </div>
+                 </div>
+
+                 <!-- Step 4: Email Verification Code (Database Verification Simulation) -->
+                 <div class="wizard-step">
+                     <div class="form-group">
+                         <label for="verification_code">Enter 6-Digit Verification Code</label>
+                         <p style="font-size: 13px; color: #666; margin-top: -5px; margin-bottom: 10px;">
+                             We've sent a code to your OBU email address.
+                         </p>
+                         <input type="text" id="verification_code" name="verification_code" maxlength="6" pattern="\d{6}" placeholder="e.g. 123456" required>
+
+                         <div style="margin-top: 10px; font-size: 13px;">
+                             <span id="timerContainer" style="color: #666;">Resend code in: <strong id="countdownClock">00:30</strong></span>
+                             <button type="button" id="resendBtn" onclick="triggerResend()" style="display: none; background: none; border: none; color: #0056b3; cursor: pointer; padding: 0; text-decoration: underline; font-weight: bold;">
+                                 Resend Code
+                             </button>
+                         </div>
+                     </div>
+                 </div>
+
+                 <!-- Step 5: Age -->
+                 <div class="wizard-step">
+                     <div class="form-group">
+                         <label for="age">Age</label>
+                         <input type="number" id="age" name="age" min="17" max="99" required>
+                     </div>
+                 </div>
+
+                 <!-- Step 6: Gender -->
+                 <div class="wizard-step">
+                     <div class="form-group">
+                         <label for="gender">Gender</label>
+                         <select id="gender" name="gender" required>
+                             <option value="">Select Gender</option>
+                             <option value="Male">Male</option>
+                             <option value="Female">Female</option>
+                             <option value="Non-Binary">Non-Binary</option>
+                             <option value="Other">Prefer not to say</option>
+                         </select>
+                     </div>
+                 </div>
+
+                 <!-- Step 7: Major -->
+                 <div class="wizard-step">
+                     <div class="form-group">
+                         <label for="major">Major / Field of Study</label>
+                         <input type="text" id="major" name="major" required placeholder="Computer Science">
+                     </div>
+                 </div>
+
+                 <!-- Step 8: Preferred Room Type -->
+                 <div class="wizard-step">
+                     <div class="form-group">
+                         <label for="room_type">Preferred Room Type</label>
+                         <select id="room_type" name="room_type" required>
+                             <option value="">Select Room Type</option>
+                             <option value="Single">Single Room</option>
+                             <option value="Double">Double (Shared)</option>
+                             <option value="Triple">Triple (Shared)</option>
+                             <option value="Suite">Suite Style</option>
+                         </select>
+                     </div>
+                 </div>
+
+                 <!-- Step 9: Budget -->
+                 <div class="wizard-step">
+                     <div class="form-group">
+                         <label for="budget">Budget ($ / month limit)</label>
+                         <input type="number" id="budget" name="budget" min="0" step="50" required placeholder="e.g. 800">
+                     </div>
+                 </div>
+
+                 <!-- Step 10: Move In Date -->
+                 <div class="wizard-step">
+                     <div class="form-group">
+                         <label for="move_in">Expected Move-In Date</label>
+                         <input type="date" id="move_in" name="move_in" required>
+                     </div>
+                 </div>
+
+                 <!-- Step 11: Cleanliness Rating -->
+                                  <!-- Step 11: Cleanliness Rating -->
+                 <div class="wizard-step">
+                     <div class="form-group">
+                         <label for="cleanliness">Cleanliness Rating (1 = Laid back, 5 = Very Clean)</label>
+                         <select id="cleanliness" name="cleanliness" required>
+                             <option value="1">1 - Very Messy / Laid Back</option>
+                             <option value="2">2 - Mostly Casual</option>
+                             <option value="3">3 - Average Cleanliness</option>
+                             <option value="4">4 - Neat and Tidy</option>
+                             <option value="5">5 - Spotless / Neat Freak</option>
+                         </select>
+                     </div>
+                 </div>
+
+                 <!-- Step 12: Lifestyle Schedule -->
+                 <div class="wizard-step">
+                     <div class="form-group">
+                         <label for="schedule">Daily Lifestyle Schedule</label>
+                         <select id="schedule" name="schedule" required>
+                             <option value="">Select your schedule</option>
+                             <option value="Early Bird">Early Bird (Morning Person)</option>
+                             <option value="Night Owl">Night Owl (Up Late)</option>
+                             <option value="Flexible">Flexible / Mixed Schedule</option>
+                         </select>
+                     </div>
+                 </div>
+
+                 <!-- Step 13: Lifestyle Factors -->
+                 <div class="wizard-step">
+                     <div class="form-group">
+                         <label style="display: block; font-weight: bold; margin-bottom: 15px;">Lifestyle Factors</label>
+
+                         <div class="checkbox-group">
+                             <input type="checkbox" id="smoker" name="smoker" value="Yes">
+                             <label for="smoker">Smoker (Check if yes)</label>
+                         </div>
+                         <div class="checkbox-group">
+                             <input type="checkbox" id="pets" name="pets" value="Yes">
+                             <label for="pets">Pets (Check if bringing a pet)</label>
+                         </div>
+                         <div class="checkbox-group">
+                             <input type="checkbox" id="car" name="car" value="Yes">
+                             <label for="car">Car (Check if bringing a vehicle)</label>
+                         </div>
+                     </div>
+                 </div>
+
+                 <!-- Form Navigation Buttons -->
+                 <div class="button-group">
+                     <button type="button" class="nav-btn prev-btn" id="prevBtn" onclick="changeStep(-1)" style="display: none;">Back</button>
+                     <button type="button" class="nav-btn next-btn" id="nextBtn" onclick="changeStep(1)">Next</button>
+                 </div>
              </form>
          </div>
      </main>
 
+     <script>
+         let currentStep = 0;
+         let timerInterval = null;
+         const steps = document.querySelectorAll(".wizard-step");
+         const prevBtn = document.getElementById("prevBtn");
+         const nextBtn = document.getElementById("nextBtn");
+         const progressBar = document.getElementById("progressBar");
+         const stepIndicator = document.getElementById("stepIndicator");
+
+         // MOCK DATABASE DATA REFERENCE LOOKUPS
+         const mockDatabaseTable = [
+             { email: "jdoe@oceanbay.edu", code: "123456" },
+             { email: "asmith@oceanbay.edu", code: "987654" },
+             { email: "test@oceanbay.edu", code: "000000" }
+         ];
+
+         function updateWizard() {
+             steps.forEach((step, index) => {
+                 step.classList.toggle("active", index === currentStep);
+             });
+
+             prevBtn.style.display = currentStep === 0 ? "none" : "inline-block";
+
+             if (currentStep === steps.length - 1) {
+                 nextBtn.textContent = "Submit Profile";
+                 nextBtn.classList.remove("next-btn");
+                 nextBtn.classList.add("submit-btn");
+             } else {
+                 nextBtn.textContent = "Next";
+                 nextBtn.classList.remove("submit-btn");
+                 nextBtn.classList.add("next-btn");
+             }
+
+             const progressPercent = ((currentStep + 1) / steps.length) * 100;
+             progressBar.style.width = progressPercent + '%';
+             stepIndicator.textContent = 'Step ' + (currentStep + 1) + ' of ' + steps.length;
+         }
+
+         function startCountdown() {
+             clearInterval(timerInterval);
+             let timeLeft = 30;
+
+             const clock = document.getElementById("countdownClock");
+             const container = document.getElementById("timerContainer");
+             const resendBtn = document.getElementById("resendBtn");
+
+             container.style.display = "inline";
+             resendBtn.style.display = "none";
+             clock.textContent = "00:" + (timeLeft < 10 ? "0" : "") + timeLeft;
+
+             timerInterval = setInterval(() => {
+                 timeLeft--;
+                 clock.textContent = "00:" + (timeLeft < 10 ? "0" : "") + timeLeft;
+
+                 if (timeLeft <= 0) {
+                     clearInterval(timerInterval);
+                     container.style.display = "none";
+                     resendBtn.style.display = "inline-block";
+                 }
+             }, 1000);
+         }
+
+        function triggerResend() {
+    const userEmail = document.getElementById("email").value.trim().toLowerCase();
+    const record = mockDatabaseTable.find(row => row.email === userEmail);
+    const assignedCode = record ? record.code : "111111";
+
+    // This updates the popup to show your clean, custom message
+    alert("Please check your email");
+
+    startCountdown();
+}
+
+
+         function changeStep(modifier) {
+             if (modifier === 1 && !validateCurrentStep()) {
+                 return;
+             }
+
+             // On Email Step (Index 2): Pull and trigger verification alert box
+             if (modifier === 1 && currentStep === 2) {
+                 triggerResend();
+             }
+
+             // On Verification Step (Index 3): Match values against database table lookups
+             if (modifier === 1 && currentStep === 3) {
+                 const userEmail = document.getElementById("email").value.trim().toLowerCase();
+                 const userInputCode = document.getElementById("verification_code").value.trim();
+
+                 const databaseRecord = mockDatabaseTable.find(row => row.email === userEmail);
+                 const correctCode = databaseRecord ? databaseRecord.code : "111111";
+
+                 if (userInputCode !== correctCode) {
+                     alert("Incorrect verification code. Please check the simulated database record code and try again.");
+                     return;
+                 }
+                 clearInterval(timerInterval);
+             }
+
+             currentStep += modifier;
+
+             if (currentStep >= steps.length) {
+                 document.getElementById("wizardForm").submit();
+                 return;
+             }
+
+             updateWizard();
+         }
+
+         function validateCurrentStep() {
+             const activeStepFields = steps[currentStep].querySelectorAll("input[required], select[required]");
+             let isValid = true;
+
+             activeStepFields.forEach(field => {
+                 if (!field.value.trim()) {
+                     alert("Please fill out the required field before moving next.");
+                     field.focus();
+                     isValid = false;
+                 }
+             });
+
+             return isValid;
+         }
+
+         updateWizard();
+     </script>
 </body>
 </html>
+
