@@ -7,10 +7,7 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
+
 
         .form-container {
             font-family: Arial, sans-serif;
@@ -90,40 +87,37 @@
             <a href="#">Housing</a>
             <a href="signup.html">DormMate</a>
         </nav>
-    </header>
+     </header>
+    <div class="form-container">
+        <h1>Welcome to DormMate!</h1>
 
-    <main>
-        <div class="form-container">
-            <h1>Welcome to DormMate!</h1>
+        <form id="signup-form">
+            <label for="username">Create Username</label>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                autocomplete="username"
+                required
+            >
 
-            <form id="signup-form">
-                <label for="username">Create Username</label>
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    autocomplete="username"
-                    required
-                >
+            <label for="password">Create Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                autocomplete="new-password"
+                required
+            >
 
-                <label for="password">Create Password</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    autocomplete="new-password"
-                    required
-                >
+            <label class="show-password" for="show-password">
+                <input type="checkbox" id="show-password">
+                Show password
+            </label>
 
-                <label class="show-password" for="show-password">
-                    <input type="checkbox" id="show-password">
-                    Show password
-                </label>
-
-                <button type="submit">Continue to Profile</button>
-            </form>
-        </div>
-    </main>
+            <button type="submit">Continue to Profile</button>
+        </form>
+    </div>
 
     <script>
         const password = document.getElementById("password");
