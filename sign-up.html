@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to DormMate</title>
+    <link rel="stylesheet" href="style.css">
 
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
         }
 
         .form-container {
@@ -74,36 +75,55 @@
 </head>
 
 <body>
-    <div class="form-container">
-        <h1>Welcome to DormMate!</h1>
+    <header>
+        <div class="logo-container">
+            <div class="logo-box">OBU</div>
+            <div class="logo">Ocean Bay University</div>
+        </div>
 
-        <form id="signup-form">
-            <label for="username">Create Username</label>
-            <input
-                type="text"
-                id="username"
-                name="username"
-                autocomplete="username"
-                required
-            >
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#">About</a>
+            <a href="#">Admissions</a>
+            <a href="#">Academics</a>
+            <a href="#">Students</a>
+            <a href="#">Housing</a>
+            <a href="signup.html">DormMate</a>
+        </nav>
+    </header>
 
-            <label for="password">Create Password</label>
-            <input
-                type="password"
-                id="password"
-                name="password"
-                autocomplete="new-password"
-                required
-            >
+    <main>
+        <div class="form-container">
+            <h1>Welcome to DormMate!</h1>
 
-            <label class="show-password" for="show-password">
-                <input type="checkbox" id="show-password">
-                Show password
-            </label>
+            <form id="signup-form">
+                <label for="username">Create Username</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    autocomplete="username"
+                    required
+                >
 
-            <button type="submit">Continue to Profile</button>
-        </form>
-    </div>
+                <label for="password">Create Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    autocomplete="new-password"
+                    required
+                >
+
+                <label class="show-password" for="show-password">
+                    <input type="checkbox" id="show-password">
+                    Show password
+                </label>
+
+                <button type="submit">Continue to Profile</button>
+            </form>
+        </div>
+    </main>
 
     <script>
         const password = document.getElementById("password");
