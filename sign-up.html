@@ -71,6 +71,24 @@
         button:hover {
             background-color: #004085;
         }
+
+        /*  TOGGLE DESIGN STYLES */
+        .auth-toggle-container {
+            text-align: center;
+            margin-top: 25px;
+            font-family: Arial, sans-serif;
+        }
+
+        .auth-toggle-container a {
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .auth-toggle-container a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -88,44 +106,70 @@
             <a href="#">Academics</a>
             <a href="#">Students</a>
             <a href="#">Housing</a>
-            <a href="signup.html">DormMate</a>
+            <a href="sign-up.html">DormMate</a>
         </nav>
     </header>
 
     <main>
         <div class="form-container">
-            <h1>Welcome to DormMate!</h1>
 
-            <form id="signup-form">
-                <label for="username">Create Username</label>
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    autocomplete="username"
-                    required
-                >
+            <!--SIGN UP  -->
+            <div id="signup-section-view">
+                <h1>Welcome to DormMate!</h1>
 
-                <label for="password">Create Password</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    autocomplete="new-password"
-                    required
-                >
+                <form id="signup-form">
+                    <label for="username">Create Username</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        autocomplete="username"
+                        required
+                    >
 
-                <label class="show-password" for="show-password">
-                    <input type="checkbox" id="show-password">
-                    Show password
-                </label>
+                    <label for="password">Create Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        autocomplete="new-password"
+                        required
+                    >
 
-                <button type="submit">Continue to Profile</button>
-            </form>
+                    <label class="show-password" for="show-password">
+                        <input type="checkbox" id="show-password">
+                        Show password
+                    </label>
+
+                    <button type="submit">Continue to Profile</button>
+                </form>
+            </div>
+
+            <!-- RETURNING USER LOGIN Form -->
+            <div id="login-section-view" style="display: none;">
+                <h1>Log In to DormMate</h1>
+
+                <form id="login-form">
+                    <label for="login-email">School Email</label>
+                    <input type="email" id="login-email" placeholder="Enter your school email" required>
+
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+
+                    <button type="submit">Log In</button>
+                </form>
+            </div>
+
+            <!-- Switching from Create to Return -->
+            <div class="auth-toggle-container">
+                <p id="prompt-text">Already have an account? <a href="#" id="toggle-auth-view">Log In Here</a></p>
+            </div>
+
         </div>
     </main>
 
     <script>
+
         const password = document.getElementById("password");
         const checkbox = document.getElementById("show-password");
 
@@ -138,6 +182,42 @@
                 event.preventDefault();
                 window.location.href = "edit-profile.html";
             });
+
+        // ---Redirect LOG IN NAVIGATION  ---
+        document.getElementById("login-form")
+            .addEventListener("submit", function (event) {
+                event.preventDefault();
+                window.location.href = "index.html";
+            });
+
+        // ---  TOGGLE LOGIC ---
+        function runToggleEngine() {
+            document.getElementById('toggle-auth-view').addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const signupSection = document.getElementById('signup-section-view');
+                const loginSection = document.getElementById('login-section-view');
+                const promptText = document.getElementById('prompt-text');
+
+                if (loginSection.style.display === 'none') {
+                    // Hide registration layout smoothly, switch to login
+                    signupSection.style.display = 'none';
+                    loginSection.style.display = 'block';
+                    promptText.innerHTML = 'Need an account? <a href="#" id="toggle-auth-view">Sign Up Here</a>';
+                } else {
+                    // Bring registration fields right back, hide login card
+                    signupSection.style.display = 'block';
+                    loginSection.style.display = 'none';
+                    promptText.innerHTML = 'Already have an account? <a href="#" id="toggle-auth-view">Log In Here</a>';
+                }
+
+                // Re-execute listener mapping to accommodate innerHTML restructuring
+                runToggleEngine();
+            });
+        }
+
+        // Boot system execution
+        runToggleEngine();
     </script>
 </body>
 </html>
