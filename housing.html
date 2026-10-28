@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Housing | Ocean Bay University</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #102b50;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 15px 5%;
+            background: white;
+            border-bottom: 3px solid #d6ad45;
+        }
+
+        .university-name {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .logo {
+            display: inline-block;
+            background: #102b50;
+            color: white;
+            padding: 5px 12px;
+            margin-right: 8px;
+            border-radius: 4px;
+        }
+
+        .navbar nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .navbar nav a {
+            color: #102b50;
+            font-weight: bold;
+        }
+
+        .navbar nav a:hover,
+        .navbar nav a.active {
+            color: #b18a25;
+        }
+
+        /* Hero section */
+        .hero {
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            padding: 45px 7%;
+            color: white;
+            background:
+                linear-gradient(90deg,
+                rgba(9, 35, 70, 0.96),
+                rgba(9, 35, 70, 0.65),
+                rgba(9, 35, 70, 0.15)),
+                url("images/pexels-mohamed-b-2151113020-31624515.jpg")
+                center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 550px;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            margin: 5px 0 12px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 17px;
+        }
+
+        .gold-text {
+            color: #f3cd70;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* General sections */
+        .section {
+            padding: 45px 7%;
+        }
+
+        .section h2 {
+            font-size: 32px;
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .section-intro {
+            max-width: 720px;
+            margin: 0 auto 30px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .light-section {
+            background: #f0f5fa;
+        }
+
+        /* Benefits */
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .benefit {
+            text-align: center;
+        }
+
+        .benefit-icon {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            border-radius: 50%;
+            background: #f3d582;
+            font-size: 25px;
+        }
+
+        .benefit h3 {
+            margin: 8px 0;
+        }
+
+        /* Housing options */
+        .housing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .housing-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .housing-list {
+            padding-left: 20px;
+        }
+
+        .housing-list li {
+            margin-bottom: 8px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 22px;
+            margin-top: 12px;
+            border-radius: 6px;
+            background: #102b50;
+            color: white;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: #234b78;
+        }
+
+        /* Dorm Mate introduction */
+        .dormmate-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        /* Getting started */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .step-number {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #102b50;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .step h3 {
+            font-size: 17px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 30px 7%;
+            text-align: center;
+            color: white;
+            background: #102b50;
+        }
+
+        .footer h2 {
+            margin-top: 0;
+        }
+
+        .footer .button {
+            background: #f3d582;
+            color: #102b50;
+        }
+
+        @media (max-width: 800px) {
+            .benefits,
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .housing-grid,
+            .dormmate-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                gap: 15px;
+            }
+
+            .navbar nav {
+                gap: 12px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .benefits,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .section h2 {
+                font-size: 27px;
+            }
+
+            .hero {
+                padding: 35px 6%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation bar -->
+    <header class="navbar">
+        <div class="university-name">
+            <span class="logo">OBU</span>
+            Ocean Bay University
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#">About</a>
+            <a href="#">Admissions</a>
+            <a href="#">Academics</a>
+            <a href="#">Students</a>
+            <a href="housing.html" class="active">Housing</a>
+            <a href="edit-profile.html">Dorm Mate</a>
+        </nav>
+    </header>
+
+    
+
+    <!-- Hero section -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="gold-text">Campus Housing</p>
+            <h1>Live, Learn, Belong.</h1>
+            <p>
+                Discover campus living at Ocean Bay University.
+                Find a place to call home, meet new people, and
+                make the most of your college experience.
+            </p>
+        </div>
+    </section>
+
+    <!-- Living on campus -->
+    <section class="section center">
+        <div class="section-intro">
+            <h2>Living on Campus</h2>
+            <p>
+                Living on campus gives students the opportunity to
+                become part of the OBU community. From meeting new
+                friends to being close to classes and campus
+                activities, college housing can make your university
+                experience more convenient and memorable.
+            </p>
+        </div>
+
+        <div class="benefits">
+            <div class="benefit">
+                <div class="benefit-icon">👥</div>
+                <h3>Build Community</h3>
+                <p>Meet new people, make friends, and participate in campus life.</p>
+            </div>
+
+            <div class="benefit">
+                <div class="benefit-icon">📍</div>
+                <h3>Convenient Location</h3>
+                <p>Enjoy convenient access to classes and campus resources.</p>
+            </div>
+
+            <div class="benefit">
+                <div class="benefit-icon">🏠</div>
+                <h3>Feel at Home</h3>
+                <p>Create your own space while adjusting to college life.</p>
+            </div>
+
+            <div class="benefit">
+                <div class="benefit-icon">🎓</div>
+                <h3>Student Experience</h3>
+                <p>Balance academics, friendships, and campus activities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Housing options -->
+    <section class="section light-section" id="housing-options">
+        <div class="housing-grid">
+            <div>
+                <h2>Housing Options</h2>
+
+                <p>
+                    Every student has different needs and preferences.
+                    Explore the types of campus housing students may
+                    choose from at OBU.
+                </p>
+
+                <ul class="housing-list">
+                    <li><strong>Traditional Residence Halls:</strong>
+                        Shared rooms in a residence hall.</li>
+
+                    <li><strong>Suite-Style Living:</strong>
+                        Bedrooms with shared common areas.</li>
+
+                    <li><strong>Apartment-Style Housing:</strong>
+                        A more independent living arrangement.</li>
+                </ul>
+
+                <a href="#getting-started" class="button">
+                    Explore Housing
+                </a>
+            </div>
+
+            <img
+                class="housing-image"
+                src="images/Cozy Fall Dorm Room Ideas for a Small College Room.jpg"
+                alt="Example of a shared student dorm room"
+            >
+        </div>
+    </section>
+
+    <!-- What is Dorm Mate -->
+    <section class="section">
+        <div class="dormmate-grid">
+            <img
+                class="housing-image"
+                src="images/pexels-mohamed-b-2151113020-31624515.jpg"
+                alt="Example of a university campus"
+            >
+
+            <div>
+                <h2>What Is Dorm Mate?</h2>
+
+                <p>
+                    Dorm Mate is OBU's roommate-matching platform,
+                    designed to help students find compatible
+                    roommates before moving into campus housing.
+                </p>
+
+                <p>
+                    Students can create a profile and share their
+                    interests, lifestyle, preferences, and daily
+                    routines. These details can help students discover
+                    potential roommates with similar habits and
+                    expectations.
+                </p>
+
+                <a href="signup.html" class="button">
+                    Get Started with Dorm Mate
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to get started -->
+    <section class="section light-section" id="getting-started">
+        <div class="center">
+            <h2>How to Get Started</h2>
+            <p>
+                Follow these steps to begin your campus housing journey.
+            </p>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <span class="step-number">1</span>
+                <h3>Explore Housing</h3>
+                <p>Learn about your available room and residence options.</p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">2</span>
+                <h3>Create an Account</h3>
+                <p>Sign up for Dorm Mate and begin your student profile.</p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">3</span>
+                <h3>Complete Your Profile</h3>
+                <p>Share your interests and roommate preferences.</p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">4</span>
+                <h3>Find Your Dorm Mate</h3>
+                <p>Explore compatible roommates and prepare for campus life.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <h2>Your Home at OBU Awaits</h2>
+        <p>Start exploring your campus living experience today.</p>
+
+        <a href="#housing-options" class="button">
+            Explore Housing Options
+        </a>
+
+        <p>&copy; 2026 Ocean Bay University | Student Housing</p>
+    </footer>
+
+</body>
+</html>
