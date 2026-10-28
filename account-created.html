@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Created | Dorm Mate</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f5fa;
+            color: #102b50;
+        }
+
+        header {
+            background-color: navy;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-box {
+            width: 50px;
+            height: 50px;
+            border: 2px solid gold;
+            color: gold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .university-name {
+            color: gold;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        main {
+            min-height: 75vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .confirmation {
+            background-color: white;
+            max-width: 550px;
+            width: 100%;
+            padding: 45px 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #e5f4e8;
+            color: #237a43;
+            font-size: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #4c5d70;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 13px 25px;
+            background-color: navy;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background-color: #234b78;
+        }
+
+        footer {
+            background-color: navy;
+            color: white;
+            text-align: center;
+            padding: 18px;
+        }
+
+        @media (max-width: 500px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .university-name {
+                font-size: 20px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo-box">OBU</div>
+        <div class="university-name">Ocean Bay University</div>
+    </header>
+
+    <main>
+        <section class="confirmation">
+            <div class="checkmark">&#10003;</div>
+
+            <h1>Account Created Successfully!</h1>
+
+            <p>
+                Welcome to Dorm Mate!
+                Your profile and roommate questionnaire
+                have been completed.
+            </p>
+
+            <p>
+                You're one step closer to finding
+                your ideal roommate.
+            </p>
+
+            <a href="index.html" class="button">
+                Continue to Dorm Mate
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 Ocean Bay University | Dorm Mate
+    </footer>
+
+</body>
+</html>
