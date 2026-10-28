@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial initial-scale=1.0">
+    <title>Sign up | OBU Dormmate</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .signup-container {
+            max-width: 440px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);   
+        }
+
+        .signup-container h1 {
+            text-align: center;
+            color: #102b50;
+            margin-bottom: 10px;
+        }
+
+        .signup-intro {
+            text-align: center;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .signup-form.form-group {
+            margin-bottom: 18px;
+        }
+
+        .signup-form label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+            color: #102b50;
+        }
+
+        .signup-form input:focus {
+            outline: 2px solid #d4af37;
+            border-color: #d4af37;
+        }
+
+        .signup-btn:hover {
+            background: #1b426f;
+
+        }
+
+        .signup-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #555;
+        }
+
+        .signup-footer a {
+
+            color:#102b50;
+            font-weight: bold;
+        }
+
+        .form-message {
+            color: #a12622;
+            margin-top: 12px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 500px) {
+            .signup-container{
+             margin: 25px 15px;
+             padding: 22px;
+
+            }
+        }
+    </style>
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="#">About</a>
+                <a href="#">Admissions</a>
+                <a href="#">Academics</a>
+                <a href="#">Students</a>
+                <a href="#">Housing</a>
+                <a href="edit-profile.html">Dormmate</a>
+            </nav>
+        </header>
+
+        <main class="signup-container">
+            <h1>Create Your Account</h1>
+            <p class="signup-intro">
+                Join OBU Dormmate to find your ideal roommate.
+            </p>
+
+            <form class="signup-form" id="signupForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+
+                    <input
+                    type="text"
+                    id="username"
+                    name="usernamne"
+                    autocomplete="username"
+                    minlength="3"
+                    maxlength="17" required
+                    placeholder="Choose a username">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">OBU Student Email</label>
+
+                    <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    autocomplete="email" required placeholder="you@obu.edu">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    autocomplete="new-password"
+                    minlength="8" required
+                    placeholder="At least 8 characters">
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">confirm-password</label>
+                    <input 
+                    type="password"
+                    id="confirm-password"
+                    name="confirm-password"
+                    autocomplete="new-password"
+                    minlength="8" required
+                    placeholder="Enter your password again">
+                </div>
+
+                <button type="submit" class="signup-btn">Create Account</button>
+                <p class="form-message" id="formMessage" role="alert"></p>
+            </form>
+
+            <p class="signup-footer">
+                Already have an account?
+                <a href="#" id="loginLink">Log in</a>
+            </p>
+        </main>
+
+        <script>
+            const signupForm = document.getElementById("signedupForm");
+            const password = document.getElementById("password");
+            const confirmPassword = document.getElementById("confirmpassword");
+            const formMessage = document.getElementById("formMessage");
+
+            signupForm.addEventListener("submit"),function (event) {
+                event.preventDefault();
+                formMessage.textContent = "",
+
+                if(password.value !== confirmPassword.value){
+                formMessage.textContent = "Your passwords do not match.";
+                confirmPassword.focus();
+                return;
+                }
+
+                //Front-end demostration only.
+                //No account or password is saved.alert( "Sign-up demo complete! Account creation will be connected later.");
+
+                alert(
+                    "Sign-up demo complete! Account creation will be connected later.");
+                window.location.href = "edit-profile.html"};
+
+            document.getElementById("LoginLink").addEventListener("click",function (event) {
+                event.preventDefault();
+                alert("The login page will be added when authentication is implement.");
+            }
+            );
+
+        </script>
+    </body>
+</html>
