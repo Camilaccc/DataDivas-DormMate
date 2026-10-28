@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to DormMate</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-container {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 60px auto;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .show-password {
+            font-weight: normal;
+            margin-bottom: 20px;
+        }
+
+        .show-password input {
+            width: auto;
+            margin: 0 5px 0 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #004085;
+        }
+
+        /*  TOGGLE DESIGN STYLES */
+        .auth-toggle-container {
+            text-align: center;
+            margin-top: 25px;
+            font-family: Arial, sans-serif;
+        }
+
+        .auth-toggle-container a {
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .auth-toggle-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo-box">OBU</div>
+            <div class="logo">Ocean Bay University</div>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#">About</a>
+            <a href="#">Admissions</a>
+            <a href="#">Academics</a>
+            <a href="#">Students</a>
+            <a href="#">Housing</a>
+            <a href="sign-up.html">DormMate</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-container">
+
+            <!--SIGN UP  -->
+            <div id="signup-section-view">
+                <h1>Welcome to DormMate!</h1>
+
+                <form id="signup-form">
+                    <label for="username">Create Username</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        autocomplete="username"
+                        required
+                    >
+
+                    <label for="password">Create Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <label class="show-password" for="show-password">
+                        <input type="checkbox" id="show-password">
+                        Show password
+                    </label>
+
+                    <button type="submit">Continue to Profile</button>
+                </form>
+            </div>
+
+            <!-- RETURNING USER LOGIN Form -->
+            <div id="login-section-view" style="display: none;">
+                <h1>Log In to DormMate</h1>
+
+                <form id="login-form">
+                    <label for="login-email">School Email</label>
+                    <input type="email" id="login-email" placeholder="Enter your school email" required>
+
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+
+                    <button type="submit">Log In</button>
+                </form>
+            </div>
+
+            <!-- Switching from Create to Return -->
+            <div class="auth-toggle-container">
+                <p id="prompt-text">Already have an account? <a href="#" id="toggle-auth-view">Log In Here</a></p>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+
+        const password = document.getElementById("password");
+        const checkbox = document.getElementById("show-password");
+
+        checkbox.addEventListener("change", function () {
+            password.type = checkbox.checked ? "text" : "password";
+        });
+
+        document.getElementById("signup-form")
+            .addEventListener("submit", function (event) {
+                event.preventDefault();
+                window.location.href = "edit-profile.html";
+            });
+
+        // ---Redirect LOG IN NAVIGATION  ---
+        document.getElementById("login-form")
+            .addEventListener("submit", function (event) {
+                event.preventDefault();
+                window.location.href = "index.html";
+            });
+
+        // ---  TOGGLE LOGIC ---
+        function runToggleEngine() {
+            document.getElementById('toggle-auth-view').addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const signupSection = document.getElementById('signup-section-view');
+                const loginSection = document.getElementById('login-section-view');
+                const promptText = document.getElementById('prompt-text');
+
+                if (loginSection.style.display === 'none') {
+                    // Hide registration layout smoothly, switch to login
+                    signupSection.style.display = 'none';
+                    loginSection.style.display = 'block';
+                    promptText.innerHTML = 'Need an account? <a href="#" id="toggle-auth-view">Sign Up Here</a>';
+                } else {
+                    // Bring registration fields right back, hide login card
+                    signupSection.style.display = 'block';
+                    loginSection.style.display = 'none';
+                    promptText.innerHTML = 'Already have an account? <a href="#" id="toggle-auth-view">Log In Here</a>';
+                }
+
+                // Re-execute listener mapping to accommodate innerHTML restructuring
+                runToggleEngine();
+            });
+        }
+
+        // Boot system execution
+        runToggleEngine();
+    </script>
+</body>
+</html>
